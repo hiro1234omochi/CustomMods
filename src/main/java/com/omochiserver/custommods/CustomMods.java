@@ -19,8 +19,7 @@ public final class CustomMods extends JavaPlugin
         //config.yamlの読み込み
         saveDefaultConfig();
         FileConfiguration config = getConfig();
-        //設定されてない値を追加
-        this.getConfig().options().copyDefaults(true);
+
 
         // Plugin startup logic
         getCommand("fly").setExecutor(new Fly());

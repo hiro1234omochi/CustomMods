@@ -14,6 +14,7 @@ public class Nickname implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         FileConfiguration config = CustomMods.getPlugin().getConfig();
+        config.getString("nickname","true");
         boolean result = false;
         String config_fly = config.getString("nickname");
         if (config_fly.equalsIgnoreCase("op")){

@@ -19,6 +19,7 @@ public class Fly implements CommandExecutor
     {
         //権限確認
         FileConfiguration config = CustomMods.getPlugin().getConfig();
+        config.getString("fly","op");
         boolean result = false;
         String config_fly = config.getString("fly");
         if (config_fly.equalsIgnoreCase("op")){
