@@ -32,11 +32,12 @@ public class SetConfig implements CommandExecutor
             sender.sendMessage(ChatColor.RED + "引数の2番目が間違っています。詳しくは /help setconfig を参照してください");
             return true;
         }
+        sender.sendMessage(ChatColor.GREEN + "[config]" + args[0] + "に必要な権限を" + args[1] + "に変更しました");
         FileConfiguration config = CustomMods.getPlugin().getConfig();
         config.set(args[0].toLowerCase(),args[1].toLowerCase());
         CustomMods.getPlugin().saveConfig();
         Bukkit.reload();
-        sender.sendMessage(ChatColor.GREEN + args[0] + "を" + args[1] + "に変更しました");
+
         return true;
     }
 }
