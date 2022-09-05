@@ -18,14 +18,14 @@ public class Nickname implements CommandExecutor
         String config_fly = config.getString("nickname");
         if (config_fly.equalsIgnoreCase("op")){
             result = !sender.isOp();
-        } else if (config_fly.equalsIgnoreCase("not op")) {
+        } else if (config_fly.equalsIgnoreCase("notop")) {
             result = sender.isOp();
         } else if (config_fly.equalsIgnoreCase("true")) {
             result = false;
         } else if (config_fly.equalsIgnoreCase("false")) {
             result = true;
         }else{
-            sender.sendMessage(ChatColor.RED + "plugin.ymlのNicknameタブの表記が異なります。指定できる値はtrue,false,op,not opの4つです。");
+            sender.sendMessage(ChatColor.RED + "plugin.ymlのNicknameタブの表記が異なります。指定できる値はtrue,false,op,notopの4つです。");
         }
 
         if (result)

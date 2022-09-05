@@ -13,6 +13,10 @@ public class SetConfig implements CommandExecutor
 {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!(sender.isOp()))
+        {
+            sender.sendMessage(ChatColor.RED +  "あなたには権限がありません");
+        }
         if(args.length<2)
         {
             sender.sendMessage(ChatColor.RED + "引数が足りません。詳しくは /help setconfig を参照してください。");
@@ -23,7 +27,7 @@ public class SetConfig implements CommandExecutor
             sender.sendMessage(ChatColor.RED + "引数の1番目が間違っています。詳しくは /help setconfig を参照してください");
             return true;
         }
-        if(!(args[1].equalsIgnoreCase("op") || args[1].equalsIgnoreCase("not op") || args[1].equalsIgnoreCase("true") || args[1].equalsIgnoreCase("false")))
+        if(!(args[1].equalsIgnoreCase("op") || args[1].equalsIgnoreCase("notop") || args[1].equalsIgnoreCase("true") || args[1].equalsIgnoreCase("false")))
         {
             sender.sendMessage(ChatColor.RED + "引数の2番目が間違っています。詳しくは /help setconfig を参照してください");
             return true;
@@ -32,6 +36,7 @@ public class SetConfig implements CommandExecutor
         config.set(args[0].toLowerCase(),args[1].toLowerCase());
         CustomMods.getPlugin().saveConfig();
         Bukkit.reload();
+        sender.sendMessage(ChatColor.GREEN + args[0] + "を" + args[1] + "に変更しました");
         return true;
     }
 }
