@@ -26,6 +26,7 @@ public class Nickname implements CommandExecutor
             result = true;
         }else{
             sender.sendMessage(ChatColor.RED + "plugin.ymlのNicknameタブの表記が異なります。指定できる値はtrue,false,op,notopの4つです。");
+            return true;
         }
 
         if (result)
