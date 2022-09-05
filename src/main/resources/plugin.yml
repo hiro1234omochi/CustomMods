@@ -1,0 +1,36 @@
+name: CustomMods
+version: '${project.version}'
+main: com.omochiserver.custommods.CustomMods
+api-version: 1.18
+load: STARTUP
+authors: [ omochi ]
+description: you are can use fly command , nickname command and config set command
+default-permission: true
+commands:
+  fly:
+
+    description: Fly command.
+    usage: |
+      /fly [player]
+      引数なしで実行すると、実行したプレイヤーの飛行が有効なら無効、無効なら有効になります。
+      引数にはプレイヤー名が入ります。プレイヤー名をつけて実行すると、指定したプレイヤーの飛行が無効なら有効、有効なら無効となります。
+      いずれの場合も指定されているプレイヤーはクリエイティブモード、スペクテイターモードの場合は失敗します。
+  nickname:
+    description: set nickname.
+    usage: |
+      /nickname [name]
+      nameには文字コードを含めて30文字までの文字列が指定できます。
+      文字コードにはalternate color codeを使用します。
+      セクションの部分は&に置き換えてください。
+    aliases:
+      - nick
+  setconfig:
+    description: set config.
+    usage: |
+      /setconfig [config] [permission]
+      configには設定を変更したいものを入力してください。fly nickname から選べます。
+      permissionにはコマンドの実行権限を記述してください。
+      true : すべてのプレイヤーに使用を許可。
+      false : すべてのプレイヤーに使用を許可しない。
+      op : op権限を持つプレイヤーに使用を許可。
+      not op:op権限を持たないプレイヤーに使用を許可
