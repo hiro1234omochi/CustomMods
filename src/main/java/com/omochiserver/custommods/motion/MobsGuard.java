@@ -1,4 +1,5 @@
 package com.omochiserver.custommods.motion;
 
-public class MobsGuard {
+public class MobsGuard
+{
 }
