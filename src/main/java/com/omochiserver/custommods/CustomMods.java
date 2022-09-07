@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.omochiserver.custommods.commands.Fly;
 import com.omochiserver.custommods.commands.Nickname;
-
+import com.omochiserver.custommods.motion.MobsGuard;
 public final class CustomMods extends JavaPlugin
 {
     private static CustomMods plugin;
@@ -22,6 +22,7 @@ public final class CustomMods extends JavaPlugin
         //設定されてない値を追加
         this.getConfig().options().copyDefaults(true);
 
+        getServer().getPluginManager().registerEvents(new MobsGuard(), this);
         // Plugin startup logic
         getCommand("fly").setExecutor(new Fly());
         getCommand("nickname").setExecutor(new Nickname());
