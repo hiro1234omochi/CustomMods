@@ -41,6 +41,19 @@ public class SetConfig implements CommandExecutor
 
 
                 String[] radius_array = args[2].split("-");
+                for (String str:radius_array)
+                {
+                    try {
+                        Float a =Float.valueOf(str);
+                        if (a>10 || a<1)
+                        {
+                            a = Float.valueOf("a");
+                        }
+                    }catch(NumberFormatException nfex){
+                        sender.sendMessage(ChatColor.RED + "引数の3番目が間違っています。詳しくは /help setconfigを参照してください。");
+                        return true;
+                }
+                }
                 sender.sendMessage(ChatColor.GREEN + "ブロック破壊を無効にする対象の爆発の大きさ(sensing_radius)を" + String.join(",",radius_array) + "に設定しました");
                 config.set("sensing_radius",null);
                 int count=1;

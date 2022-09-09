@@ -3,6 +3,7 @@ package com.omochiserver.custommods.motion;
 
 import com.omochiserver.custommods.CustomMods;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -22,7 +23,19 @@ public class MobsGuard implements Listener
 
         FileConfiguration config = CustomMods.getPlugin().getConfig();
         boolean decision=false;
-
+        //エラーがあるか確認
+        for (String key : config.getConfigurationSection("sensing_radius").getKeys(false))
+        {
+            if (config.isString("sensing_radius." + key) || config.getDouble("sensing_radius." + key) >10 || config.getDouble("sensing_radius." + key) <1)
+            {
+                CustomMods.getPlugin().getLogger().info("config.ymlのsensing_radiusの" + key + "の値が不正です。1~10の間の少数または整数が指定できます。");
+            }
+        }
+        if (!(config.getString("sensing_fire").equalsIgnoreCase("true") || config.getString("sensing_fire").equalsIgnoreCase("false")
+        || config.getString("sensing_fire").equalsIgnoreCase("all")))
+        {
+            CustomMods.getPlugin().getLogger().info("config.ymlのsensing_fireタグの値が不正です。true,false,allから選択できます。");
+        }
         for (String key : config.getConfigurationSection("sensing_radius").getKeys(false)) {
 
             if (String.valueOf(config.getDouble("sensing_radius." + key)).equalsIgnoreCase(String.valueOf(e.getRadius())))

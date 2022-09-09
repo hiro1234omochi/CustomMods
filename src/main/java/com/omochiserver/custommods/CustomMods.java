@@ -21,6 +21,7 @@ public final class CustomMods extends JavaPlugin
         FileConfiguration config = getConfig();
         //設定されてない値を追加
         this.getConfig().options().copyDefaults(true);
+        saveConfig();
 
         getServer().getPluginManager().registerEvents(new MobsGuard(), this);
         // Plugin startup logic
