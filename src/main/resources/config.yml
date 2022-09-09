@@ -1,2 +1,5 @@
-nickname : true
-fly : op
+nickname : "true"
+fly : "op"
+sensing_radius :
+  key1 : 3.0
+sensing_fire : "false"
