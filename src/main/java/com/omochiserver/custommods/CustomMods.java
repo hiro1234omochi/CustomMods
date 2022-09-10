@@ -1,12 +1,11 @@
 package com.omochiserver.custommods;
 
 import com.omochiserver.custommods.commands.SetConfig;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.omochiserver.custommods.commands.Fly;
 import com.omochiserver.custommods.commands.Nickname;
-import com.omochiserver.custommods.motion.MobsGuard;
+import com.omochiserver.custommods.motion.ExplosionGuard;
 public final class CustomMods extends JavaPlugin
 {
     private static CustomMods plugin;
@@ -23,7 +22,7 @@ public final class CustomMods extends JavaPlugin
         this.getConfig().options().copyDefaults(true);
         saveConfig();
 
-        getServer().getPluginManager().registerEvents(new MobsGuard(), this);
+        getServer().getPluginManager().registerEvents(new ExplosionGuard(), this);
         // Plugin startup logic
         getCommand("fly").setExecutor(new Fly());
         getCommand("nickname").setExecutor(new Nickname());

@@ -6,10 +6,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class SetConfig implements CommandExecutor
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class SetConfig implements CommandExecutor, TabCompleter
 {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -64,7 +69,7 @@ public class SetConfig implements CommandExecutor
                 }
 
             }else if (args[1].equalsIgnoreCase("sensing_fire")) {
-                if (!(args[2].equalsIgnoreCase("all") || args[2].equalsIgnoreCase("false")  || args[2].equalsIgnoreCase("true")))
+                if (!(args[2].equalsIgnoreCase("all") || args[2].equalsIgnoreCase("false")  || args[2].equalsIgnoreCase("true") || args[2].equalsIgnoreCase("null")))
                 {
                     sender.sendMessage(ChatColor.RED + "引数の3番目が間違っています。詳しくは /help setconfig を参照してください");
                     return true;
@@ -84,5 +89,106 @@ public class SetConfig implements CommandExecutor
         //Bukkit.reload();
 
         return true;
+    }
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if(command.getName().equalsIgnoreCase("setconfig")){
+            if (args.length == 1) {
+                if (args[0].length() == 0) { // /setconfigまで
+                    return Arrays.asList("fly","nickname","explosion");
+                    
+                } else {
+                    if ("fly".startsWith(args[0]) && "nickname".startsWith(args[0]) && "explosion".startsWith(args[0])) {
+                        return Arrays.asList("fly","nickname","explosion");
+                    }
+                    else if("fly".startsWith(args[0])){
+                        return Collections.singletonList("fly");
+                    }
+                    else if("nickname".startsWith(args[0])){
+                        return Collections.singletonList("nickname");
+                    }
+                    else if("explosion".startsWith(args[0])){
+                        return Collections.singletonList("explosion");
+                    }
+                }
+            } else if (args.length == 2) {
+                if (args[0].equalsIgnoreCase("fly")) 
+                {
+                    if (args[1].length() == 0)
+                    {
+                        return Arrays.asList("true","false","op","notop");
+                    } else{
+                        if ("true".startsWith(args[1]) && "false".startsWith(args[1]) && "op".startsWith(args[1]) && "notop".startsWith(args[1]))
+                        {
+                            return Arrays.asList("true","false","op","notop");
+                        } else if ("true".startsWith(args[1])) {
+                            return Collections.singletonList("true");
+                        } else if ("false".startsWith(args[1])) { 
+                            return Collections.singletonList("false");
+                        } else if ("op".startsWith(args[1])) {
+                            return Collections.singletonList("op");
+                        } else if ("not".startsWith(args[1])) {
+                            return Collections.singletonList("notop");
+                        }
+                    }
+                } else if (args[0].equalsIgnoreCase("nickname")) {
+                    if (args[1].length() == 0)
+                    {
+                        return Arrays.asList("true","false","op","notop");
+                    } else{
+                        if ("true".startsWith(args[1]) && "false".startsWith(args[1]) && "op".startsWith(args[1]) && "notop".startsWith(args[1]))
+                        {
+                            return Arrays.asList("true","false","op","notop");
+                        } else if ("true".startsWith(args[1])) {
+                            return Collections.singletonList("true");
+                        } else if ("false".startsWith(args[1])) {
+                            return Collections.singletonList("false");
+                        } else if ("op".startsWith(args[1])) {
+                            return Collections.singletonList("op");
+                        } else if ("not".startsWith(args[1])) {
+                            return Collections.singletonList("notop");
+                        }
+                    }
+                } else if (args[0].equalsIgnoreCase("explosion")) {
+                    if (args[1].length() == 0)
+                    {
+                        return Arrays.asList("sensing_fire","sensing_radius");
+                    }else {
+                        if ("sensing_fire".startsWith(args[1]) && "sensing_radius".startsWith(args[1])) {
+                            return Arrays.asList("sensing_fire","sensing_radius");
+                        } else if ("sensing_fire".startsWith(args[1])) {
+                            return Collections.singletonList("sensing_fire");
+                        } else if ("sensing_radius".startsWith(args[1])) {
+                            return Collections.singletonList("sensing_radius");
+                        }
+                    }
+                }
+            } else if (args.length == 3) {
+                if(args[0].equalsIgnoreCase("explosion")){
+                    if(args[1].equalsIgnoreCase("sensing_radius")){
+                        if (args[2].length() == 0){
+                            return Arrays.asList("3-4","3.0-4.0-9.0");
+                        }
+                    } else if (args[1].equalsIgnoreCase("sensing_fire")) {
+                        if (args[2].length() == 0){
+                            return Arrays.asList("true","false","all","null");
+                        }else{
+                            if ("true".startsWith(args[2]) && "false".startsWith(args[2]) && "all".startsWith(args[2]) && "null".startsWith(args[2])) {
+                                return Arrays.asList("false","true","all","null");
+                            } else if ("true".startsWith(args[2])) {
+                                return Collections.singletonList("true");
+                            } else if ("false".startsWith(args[2])) {
+                                return Collections.singletonList("false");
+                            } else if ("all".startsWith(args[2])) {
+                                return Collections.singletonList("all");
+                            } else if ("null".startsWith(args[2])) {
+                                return Collections.singletonList("null");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

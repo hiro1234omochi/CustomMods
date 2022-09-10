@@ -2,16 +2,12 @@ package com.omochiserver.custommods.motion;
 
 
 import com.omochiserver.custommods.CustomMods;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
-public class MobsGuard implements Listener
+public class ExplosionGuard implements Listener
 {
 
     @EventHandler
@@ -32,7 +28,7 @@ public class MobsGuard implements Listener
             }
         }
         if (!(config.getString("sensing_fire").equalsIgnoreCase("true") || config.getString("sensing_fire").equalsIgnoreCase("false")
-        || config.getString("sensing_fire").equalsIgnoreCase("all")))
+        || config.getString("sensing_fire").equalsIgnoreCase("all") || config.getString("sensing_fire").equalsIgnoreCase("null")))
         {
             CustomMods.getPlugin().getLogger().info("config.ymlのsensing_fireタグの値が不正です。true,false,allから選択できます。");
         }
@@ -41,7 +37,7 @@ public class MobsGuard implements Listener
             if (String.valueOf(config.getDouble("sensing_radius." + key)).equalsIgnoreCase(String.valueOf(e.getRadius())))
             {
 
-                if ((String.valueOf(e.getFire()).equalsIgnoreCase(config.getString("sensing_fire"))) || "all".equalsIgnoreCase(config.getString("sensing_fire")))
+                if ((String.valueOf(e.getFire()).equalsIgnoreCase(config.getString("sensing_fire"))) || "all".equalsIgnoreCase(config.getString("sensing_fire")) && (!("all".equalsIgnoreCase(config.getString("sensing_fire")))))
                 {
                     decision=true;
                 }

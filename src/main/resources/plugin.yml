@@ -1,5 +1,5 @@
 name: CustomMods
-version: '2.3-SNAPSHOT'
+version: '2.4-SNAPSHOT'
 main: com.omochiserver.custommods.CustomMods
 api-version: 1.18
 load: STARTUP
@@ -46,10 +46,12 @@ commands:
       true ： 火を伴う爆発を対象とする。
       false : 火を伴わない爆発を対象とする。
       all : すべての爆発を対象とする。
+      null : どの爆発も対象としない。
       
       explosion : sensing_fire : true 
                                  false
                                  all
+                                 null
       
       ブロック破壊を無効にする対象とする爆発の大きさを記述します。
       1~10の間で選択できます。
