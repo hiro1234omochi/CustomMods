@@ -1,5 +1,5 @@
 name: CustomMods
-version: '2.4-SNAPSHOT'
+version: '2.5-SNAPSHOT'
 main: com.omochiserver.custommods.CustomMods
 api-version: 1.18
 load: STARTUP
