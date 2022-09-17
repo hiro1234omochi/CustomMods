@@ -1,5 +1,5 @@
 name: CustomMods
-version: '2.5-SNAPSHOT'
+version: '3.0-SNAPSHOT'
 main: com.omochiserver.custommods.CustomMods
 api-version: 1.18
 load: STARTUP
@@ -30,8 +30,8 @@ commands:
       用法1 コマンドの実行権限を設定 /setconfig [config1] [permission]
       用法2 機能の設定 /setconfig [config2] [detail] [setting]
       
-      [config1]にはコマンドの実行権限を設定したいものを入力してください。fly nicknameなかから記述してください。
-      [config2]には機能の設定をしたいものを記述してください。 explosionのなかから記述してください。
+      [config1]にはコマンドの実行権限を設定したいものを入力してください。fly nicknameのなかから記述してください。
+      [config2]には機能の設定をしたいものを記述してください。explosion,viewtpsのなかから記述してください。
       
       [permission]にはコマンドの実行権限を記述してください。
       true : すべてのプレイヤーに使用を許可。
@@ -57,5 +57,21 @@ commands:
       1~10の間で選択できます。
       複数指定をする場合は、'-'で間をつないでください。
       
-      explosion : sensing_radius : 任意の値"
+      explosion : sensing_radius : 任意の値
+      
+      ボスバーにtpsを表示するプレイヤーの設定ができます。
+      true ： すべてのプレイヤーに表示する。
+      false : どのプレイヤーにも表示させない。
+      op : op権限を持つプレイヤーに表示させる。
+      notop : op権限を持たないプレイヤーに表示させる。
+      
+      viewtps : permission : true
+                             false
+                             op
+                             notop
+                             
+      tpsを更新するティックの設定ができます。
+      設定できる値は5以上です。
+      viewtps : update_tick : 任意の値
+                             "
       

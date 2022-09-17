@@ -3,3 +3,6 @@ fly : "op"
 sensing_radius :
   key1 : 3.0
 sensing_fire : "false"
+viewtps :
+  permission : "op"
+  update_tick : 20
